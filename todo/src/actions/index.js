@@ -13,6 +13,7 @@ export const addTodo = todo => {
 };
 
 export const toggleCompleted = todo => {
+  console.log(`completed: ${todo.completed}`);
   return {
     type: TOGGLE_COMPLETED,
     payload: {
