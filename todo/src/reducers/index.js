@@ -1,3 +1,5 @@
+import { ADD_TODO, TOGGLE_COMPLETED } from "../actions";
+
 const initialState = {
   todos: [
     {
@@ -20,5 +22,21 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ADD_TODO:
+      return { todos: [...state.todos, action.payload] };
+    case TOGGLE_COMPLETED:
+      return {
+        todos: [
+          ...state.todos.map(todo => {
+            if (todo.id !== action.payload.id) {
+              return todo;
+            } else {
+              return action.payload;
+            }
+          })
+        ]
+      };
+    default:
+      return state;
   }
 };
