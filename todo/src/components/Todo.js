@@ -1,16 +1,19 @@
 //This component will be "connected" to the Redux Store
+//This is the Container, it will use connect and a mapStateToProps(state) function to read from the state tree
 
 import React from "react";
 
 //Step 1- import connect from react-redux
 import { connect } from "react-redux";
 
-import { addTodo, toggleCompleted } from "../actions";
+//Import the addTodo and toggleCompleted functions from the actions directory
+import { addTodo, toggleCompleted, deleteTodo } from "../actions";
 
 class Todo extends React.Component {
+  // When the user presses submit you will invoke the appropriate action creator which will then have its new action fed through all of the reducers.
   submitHandler = e => {
     e.preventDefault();
-    this.props.addTodo(e.target.todo.value);
+    this.props.addTodo(e.target.todo.value); //Invokes this.props.addTodo and passes in todo value
     e.target.todo.value = "";
   };
 
@@ -19,7 +22,13 @@ class Todo extends React.Component {
     this.props.toggleCompleted(todo);
   };
 
+  deleteHandler = todo => {
+    this.props.deleteTodo(todo);
+  };
+
+  //You will display the todo list by creating a container that receives the application's todos array as a prop. That container then uses map to display the array.
   render() {
+    console.log(this.props.todos);
     return (
       <div>
         <h1>TODO LIST</h1>
@@ -33,6 +42,7 @@ class Todo extends React.Component {
               }}
             >
               {todo.todo}
+              <button onClick={() => this.deleteHandler(todo)}>Delete</button>
             </h2>
           );
         })}
@@ -65,5 +75,5 @@ const mapStatetoProps = state => {
 //Second call, pass in the component that we are connecting
 export default connect(
   mapStatetoProps,
-  { addTodo, toggleCompleted }
+  { addTodo, toggleCompleted, deleteTodo } //passes addTodo and toggleCompleted functions from the actions directory to add them to props. Actions creators should be passed inside an object as the second argument to the connect function inside components that need access to the Redux store.
 )(Todo);

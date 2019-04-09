@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
 
+//imports our reducer
 import todo from "./reducers";
 
 //Step 2- create a const for the store and invoke the createStore function, passing in reducer (create a reducer component or start with a mock reducer)
