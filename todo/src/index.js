@@ -20,7 +20,10 @@ import todo from "./reducers";
 
 //A reducer is simply a function that returns an object
 //The returned object will represent the state tree
-const store = createStore(todo);
+const store = createStore(
+  todo,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   //Step 4- Wrap <App /> in the Provider component
