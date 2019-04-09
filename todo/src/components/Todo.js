@@ -30,27 +30,31 @@ class Todo extends React.Component {
   render() {
     console.log(this.props.todos);
     return (
-      <div>
-        <h1>TODO LIST</h1>
-        {this.props.todos.map((todo, id) => {
-          return (
-            <h2
-              key={id}
-              onClick={e => this.completeHandler(e, todo)}
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none"
-              }}
-            >
-              {todo.todo}
-              <button onClick={() => this.deleteHandler(todo)}>Delete</button>
-            </h2>
-          );
-        })}
+      <>
+        <div className="todo-list">
+          <h1>TODO LIST</h1>
+          {this.props.todos.map((todo, id) => {
+            return (
+              <div className="todo-item">
+                <h2
+                  key={id}
+                  onClick={e => this.completeHandler(e, todo)}
+                  style={{
+                    textDecoration: todo.completed ? "line-through" : "none"
+                  }}
+                >
+                  {todo.todo}
+                </h2>
+                <button onClick={() => this.deleteHandler(todo)}>Delete</button>
+              </div>
+            );
+          })}
+        </div>
         <form onSubmit={e => this.submitHandler(e)}>
           <input type="text" placeholder="Add new todo" name="todo" />
           <button type="submit">Add</button>
         </form>
-      </div>
+      </>
     );
   }
 }

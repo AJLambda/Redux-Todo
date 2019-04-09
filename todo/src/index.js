@@ -14,22 +14,23 @@ import "./index.css";
 import App from "./App";
 
 //imports our reducer
-import todo from "./reducers";
+import rootReducer from "./reducers/index";
 
 //Step 2- create a const for the store and invoke the createStore function, passing in reducer (create a reducer component or start with a mock reducer)
 
 //A reducer is simply a function that returns an object
 //The returned object will represent the state tree
 const store = createStore(
-  todo,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+const rootElement = document.getElementById("root");
 ReactDOM.render(
   //Step 4- Wrap <App /> in the Provider component
   //Step 5- Pass the newly created store object to <Provider />'s store prop
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById("root")
+  rootElement
 );
