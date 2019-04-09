@@ -4,10 +4,16 @@
 //They take in some state, and a description of what changes took place and return a copy of our state.
 
 //Step 1: import the action types from the action files
-import { ADD_TODO, TOGGLE_COMPLETED, DELETE_TODO } from "../actions";
+import {
+  ADD_TODO,
+  TOGGLE_COMPLETED,
+  DELETE_TODO,
+  UPDATE_TITLE
+} from "../actions";
 
 //Step 2: move the state tree that we started with into a const variable called initialState
 const initialState = {
+  title: "Editable title from Redux store",
   todos: [
     {
       todo: "Walk the Dog",
@@ -34,6 +40,11 @@ export default (state = initialState, action) => {
   switch (
     action.type //Use a switch case to check the action type of the dispatched action
   ) {
+    case UPDATE_TITLE:
+      return {
+        ...state,
+        title: action.payload
+      };
     case ADD_TODO: //Each case in the switch statement returns the new, updated state tree, triggering the UI to re-render with the new data
       return { todos: [...state.todos, action.payload] };
     case TOGGLE_COMPLETED:

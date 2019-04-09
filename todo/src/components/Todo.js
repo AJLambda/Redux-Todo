@@ -32,7 +32,6 @@ class Todo extends React.Component {
     return (
       <>
         <div className="todo-list">
-          <h1>TODO LIST</h1>
           {this.props.todos.map((todo, id) => {
             return (
               <div className="todo-item" key={id}>

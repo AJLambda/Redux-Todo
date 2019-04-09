@@ -5,6 +5,7 @@
 export const ADD_TODO = "ADD_TODO"; //this is the Action Type variable that captures a string
 export const TOGGLE_COMPLETED = "TOGGLE_COMPLETED"; //this is the Action Type variable that captures a string
 export const DELETE_TODO = "DELETE_TODO";
+export const UPDATE_TITLE = "UPDATE_TITLE";
 
 //An Action Creator is a function that "creates" an action by returning an action object
 //When the Action Creator is invoked, the action is returned, and it will be dispatched (under the hood) to the reducer
@@ -43,3 +44,10 @@ export const deleteTodo = todo => {
     payload: todo
   };
 };
+
+export function updateTitle(newTitle) {
+  return {
+    type: UPDATE_TITLE,
+    payload: newTitle
+  };
+}
