@@ -13,20 +13,20 @@ import {
 
 //Step 2: move the state tree that we started with into a const variable called initialState
 const initialState = {
-  title: "Editable title from Redux store",
+  title: "Todo List",
   todos: [
     {
-      todo: "Walk the Dog",
+      todo: "Wake up",
       id: 1452,
       completed: false
     },
     {
-      todo: "Brush Teeth",
+      todo: "Turn on PC",
       id: 1356,
       completed: false
     },
     {
-      todo: "Take a Shower",
+      todo: "Get nerdy",
       id: 8273,
       completed: false
     }
@@ -46,9 +46,13 @@ export default (state = initialState, action) => {
         title: action.payload
       };
     case ADD_TODO: //Each case in the switch statement returns the new, updated state tree, triggering the UI to re-render with the new data
-      return { todos: [...state.todos, action.payload] };
+      return {
+        ...state,
+        todos: [...state.todos, action.payload]
+      };
     case TOGGLE_COMPLETED:
       return {
+        ...state,
         todos: [
           // The todos reducer will return a brand new array that will replace the old array.
           ...state.todos.map(todo => {
@@ -62,6 +66,7 @@ export default (state = initialState, action) => {
       };
     case DELETE_TODO:
       return {
+        ...state,
         todos: [...state.todos.filter(todo => todo.id !== action.payload.id)]
       };
     default:

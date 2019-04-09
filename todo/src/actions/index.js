@@ -45,9 +45,9 @@ export const deleteTodo = todo => {
   };
 };
 
-export function updateTitle(newTitle) {
+export const updateTitle = newTitle => {
   return {
     type: UPDATE_TITLE,
     payload: newTitle
   };
-}
+};
