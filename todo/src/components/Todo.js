@@ -35,7 +35,7 @@ class Todo extends React.Component {
           <h1>TODO LIST</h1>
           {this.props.todos.map((todo, id) => {
             return (
-              <div className="todo-item">
+              <div className="todo-item" key={id}>
                 <h2
                   key={id}
                   onClick={e => this.completeHandler(e, todo)}
